@@ -114,7 +114,7 @@ class PHP_Pinger {
         $this->hosts = array();
         $this->hosts_offline = array();
         $this->notification['level'] = NotificationLevel::NONE;
-        $this->notification['preffix'] = 'Status';
+        $this->notification['prefix'] = 'Status';
         return $this;
     }
     
@@ -150,8 +150,8 @@ class PHP_Pinger {
         $this->notification['emails'] = $emails;
         return $this;
     }
-    public function setNotificationPreffix($preffix) {
-        $this->notification['preffix'] = $preffix;
+    public function setNotificationprefix($prefix) {
+        $this->notification['prefix'] = $prefix;
         return $this;
     }
     public function setNotificationSignature($signature) {
@@ -166,7 +166,7 @@ class PHP_Pinger {
             $header .= "X-Priority: 2".PHP_EOL;
             mail(
                 implode(',', $this->notification['emails']),
-                '['.$this->notification['preffix'].'] '.$subject,
+                '['.$this->notification['prefix'].'] '.$subject,
                 $message.(!empty($this->notification['signature']) ? PHP_EOL.$this->notification['signature'] : ''),
                 $header
             );
